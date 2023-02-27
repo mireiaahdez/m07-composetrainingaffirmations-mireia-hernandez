@@ -16,25 +16,21 @@
 package com.example.affirmations
 
 import android.os.Bundle
-import android.provider.ContactsContract
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.affirmations.data.Datasource
 import com.example.affirmations.model.Affirmation
 import com.example.affirmations.ui.theme.AffirmationsTheme
@@ -42,7 +38,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.runtime.*
-import kotlin.math.exp
 import androidx.annotation.StringRes
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
@@ -62,7 +57,18 @@ class MainActivity : ComponentActivity() {
 fun AffirmationApp() {
     // TODO 4. Apply Theme and affirmation list
     AffirmationsTheme {
-        AffirmationList(affirmationList = Datasource().loadAffirmations())
+        val count = remember {
+            mutableStateOf(0)
+        }
+        Column() {
+            TextButton(onClick = { count.value +=1 }) {
+                Text(text = "Me han pulsado  ${count.value}")
+            }
+            AffirmationList(affirmationList = Datasource().loadAffirmations())
+        }
+
+
+
     }
 
 }
