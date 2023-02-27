@@ -48,6 +48,36 @@ import androidx.compose.animation.core.spring
 
 class MainActivity : ComponentActivity() {
 
+
+
+    override fun onResume() {
+        super.onResume()
+        setContent{
+            Log.d(TAG, "onResume :")
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        setContent{
+            Log.d(TAG, "onPause :")
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setContent{
+            Log.d(TAG, "onStart :")
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        setContent{
+            Log.d(TAG, "onStop :")
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -55,6 +85,10 @@ class MainActivity : ComponentActivity() {
             Log.d(TAG, "onCreate :")
         }
     }
+
+
+
+
 }
 
 private const val TAG = "MainActivity"
