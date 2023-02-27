@@ -15,7 +15,9 @@
  */
 package com.example.affirmations
 
+import android.nfc.Tag
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -45,13 +47,17 @@ import androidx.compose.animation.core.spring
 
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             AffirmationApp()
+            Log.d(TAG, "onCreate :")
         }
     }
 }
+
+private const val TAG = "MainActivity"
 
 @Composable
 fun AffirmationApp() {
