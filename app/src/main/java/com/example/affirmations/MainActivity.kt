@@ -44,6 +44,7 @@ import androidx.annotation.StringRes
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
+import androidx.compose.runtime.saveable.rememberSaveable
 
 
 class MainActivity : ComponentActivity() {
@@ -52,30 +53,30 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
-        setContent{
+
             Log.d(TAG, "onResume :")
-        }
+
     }
 
     override fun onPause() {
         super.onPause()
-        setContent{
+
             Log.d(TAG, "onPause :")
-        }
+
     }
 
     override fun onStart() {
         super.onStart()
-        setContent{
+
             Log.d(TAG, "onStart :")
-        }
+
     }
 
     override fun onStop() {
         super.onStop()
-        setContent{
+
             Log.d(TAG, "onStop :")
-        }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,6 +89,15 @@ class MainActivity : ComponentActivity() {
 
 
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+            Log.d(TAG, "onDestroy :")
+
+    }
+
+
+
 
 }
 
@@ -96,10 +106,9 @@ private const val TAG = "MainActivity"
 @Composable
 fun AffirmationApp() {
     // TODO 4. Apply Theme and affirmation list
-    AffirmationsTheme {
-        val count = remember {
-            mutableStateOf(0)
-        }
+    AffirmationsTheme(){
+        val count = rememberSaveable { mutableStateOf(0) }
+
         Column() {
             TextButton(onClick = { count.value +=1 }) {
                 Text(text = "Me han pulsado  ${count.value}")
